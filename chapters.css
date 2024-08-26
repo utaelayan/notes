@@ -1,0 +1,37 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #44a7f8;
+    color: #fff;
+    padding: 1em;
+    text-align: center;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em;
+}
+
+#notes-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#notes-list li {
+    background-color: #f7f7f7;
+    padding: 1em;
+    border-bottom: 1px solid #ddd;
+}
+
+#notes-list li:last-child {
+    border-bottom: none;
+}

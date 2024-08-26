@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8TREHL3KQY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-8TREHL3KQY');
+</script>
+<script>
+  function askName() {
+      // Prompt the user for their name
+      const userName = prompt("Please enter your name:");
+
+      // Check if the user entered a name
+      if (userName) {
+          // Send the name to the Netlify function
+          fetch('/.netlify/functions/logUserInput', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ name: userName })
+          })
+          .then(response => response.json())
+          .then(data => {
+              console.log(data.message);
+              document.getElementById("statusMessage").innerText = data.message;
+          })
+          .catch(error => {
+              console.error('Error:', error);
+              document.getElementById("statusMessage").innerText = 'Error logging data';
+          });
+      }
+  }
+</script>
+<style>
+/* Make the popup cover the entire page */
+.popup {
+  display: block; /* Show initially */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* Darken the background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Make sure it's on top */
+}
+
+.popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+</style>
+</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes</title>
+    <link rel="stylesheet" href="body.css">
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Website</title>
+    <link rel="stylesheet" href="index.css">
+        
+</head>
+<body>
+    <div id="namePopup" class="popup">
+        <div class="popup-content">
+          <label for="nameInput">State  your name:</label>
+          <input type="text" id="nameInput" oninput="validateName()" />
+          <button id="submitButton" onclick="submitName()" disabled>Submit</button>
+        </div>
+      </div>
+    <header>
+        <nav>
+            <ul>    
+                <li><a href="subjects.html"><h3>Home </h3></a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="Contact.html">About</a></li>
+
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h1>Greetings from Utaelayan!</h1>
+            <p>Click on home to get redirected to home page.
+                (can't belive i gotta tell you that)
+            </p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Responsive Website</p>
+        <script>
+        function validateName() {
+            var name = document.getElementById("nameInput").value;
+            var submitButton = document.getElementById("submitButton");
+            
+            if (name.length >= 3) {
+              submitButton.disabled = false;
+            } else {
+              submitButton.disabled = true;
+            }
+          }
+          
+          function submitName() {
+            var name = document.getElementById("nameInput").value;
+            
+            if (name.length >= 3) {
+              document.getElementById("namePopup").style.display = "none";
+              // Continue with the site logic here
+            } else {
+              alert("That's not your name!");
+            }
+          }
+        </script>
+</body>
+</html>

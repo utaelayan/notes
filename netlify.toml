@@ -1,0 +1,3 @@
+[build]
+  functions = "netlify"  # Path to your functions directory
+  publish = "public"           # Path to your main site files
